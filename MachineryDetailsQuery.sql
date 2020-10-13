@@ -60,4 +60,43 @@ select * from All_Division_Machinery_Details order by Machine_Name, Machine_Code
 -- order by ascending & descending
 select * from All_Division_Machinery_Details order by Machine_Name asc, Machine_Code desc
 
+--insert into // you can insert values directy if you wanna insert all the fields, fields order must be same
+insert into All_Division_Machinery_Details (Division, Machine_Name, Machine_Code, Capacity, No_of_Machines, Machine_serial_No,
+Purchased_Date, Supplier_Name) values ('Z1', 'Toe Puff', 'TPF', '2.00', '07', '2003', '2020-08-22', 'Shaheen Enterprises')
+select * from All_Division_Machinery_Details where Machine_Code = 'TPF'
+
+insert into All_Division_Machinery_Details values ('Z2', 'Counter Moulding', 'CMD', '6.00', '15', '4890', '2016-08-23', 'Western Engineering')
+select * from All_Division_Machinery_Details where Machine_Code = 'CMD'
+
+insert into All_Division_Machinery_Details (Division, Machine_Name, Machine_Code, Capacity, No_of_Machines, Machine_serial_No)
+values ('Z5', 'Post Bed Single Needle', 'PSB', '2.00', '01','6001')
+select * from All_Division_Machinery_Details where Machine_serial_No = '6001'
+
+-- NULL Values
+select Division, Machine_Name from All_Division_Machinery_Details where Division is null
+select Division, Machine_Name from All_Division_Machinery_Details where Division is not null
+
+--Update Statement // where clause is very important, if you omit where clause then all the records will be updated
+update All_Division_Machinery_Details set Machine_Name = 'Toe Mulling' where Machine_Name = 'Toe Puff'
+select * from All_Division_Machinery_Details where Machine_Name = 'Toe Mulling'
+
+--Delete Statement // where clause is very important, if you omit where clause then all the records will be deleted
+delete from All_Division_Machinery_Details where Machine_Name = 'Toe Mulling'
+select * from All_Division_Machinery_Details where Machine_Name = 'Toe Mulling'
+
+--Delete all records
+--delete from All_Division_Machinery_Details - query
+
+--SELECT TOP clause is used to specify the number of records to return
+select top 10 * from All_Division_Machinery_Details
+
+--Adding Where Clause
+select top 5 * from All_Division_Machinery_Details where Machine_Code = 'DRM'
+
+
+
+
+
+
+
 
