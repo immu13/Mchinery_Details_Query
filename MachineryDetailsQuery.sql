@@ -93,6 +93,32 @@ select top 10 * from All_Division_Machinery_Details
 --Adding Where Clause
 select top 5 * from All_Division_Machinery_Details where Machine_Code = 'DRM'
 
+--Count() 
+select count(Machine_ID) from All_Division_Machinery_Details
+
+--AVG()
+select AVG(Price) from All_Division_Machinery_Details
+
+--SUM() // must of int type
+select SUM(No_of_Machines) from All_Division_Machinery_Details
+
+--LIKE statement queires
+select * from All_Division_Machinery_Details where Machine_Name like 'a%'
+select * from All_Division_Machinery_Details where Machine_Name like '%r'
+select * from All_Division_Machinery_Details where Machine_Name like '%om%'
+select * from All_Division_Machinery_Details where Machine_Name like '_r%'
+select * from All_Division_Machinery_Details where Machine_Name like 'a__%'
+select * from All_Division_Machinery_Details where Machine_Name like 'a%r'
+select * from All_Division_Machinery_Details where Machine_Name not like 'a%'
+
+--IN Operator
+select * from All_Division_Machinery_Details where Machine_Name in ('Dry Drum', 'Air Compressor', 'Auto Spray')
+
+--NOT IN Operator
+select * from All_Division_Machinery_Details where Machine_Name not in ('Dry Drum', 'Air Compressor', 'Auto Spray')
+
+
+
 
 
 
