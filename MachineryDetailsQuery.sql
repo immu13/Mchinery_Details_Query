@@ -180,6 +180,87 @@ from All_Division_Machinery_Details right join Tannery_Division on All_Division_
 select All_Division_Machinery_Details.Division, All_Division_Machinery_Details.Machine_Code, Tannery_Division.Machine_Name
 from All_Division_Machinery_Details full outer join Tannery_Division on All_Division_Machinery_Details.Machine_ID = Tannery_Division.Machine_ID
 
+--UNION Operator (combine two tables, no duplicates)
+select Machine_Code from All_Division_Machinery_Details
+union
+select Machine_Code from Tannery_Division
+
+--UNION ALL Operator (combine two tables, with duplicates)
+select Machine_Code from All_Division_Machinery_Details
+union all
+select Machine_Code from Tannery_Division
+
+--UNION WITH WHERE
+select Machine_Code from All_Division_Machinery_Details
+where Machine_Code = 'ATS'
+union
+select Machine_Code from Tannery_Division
+where Machine_Code = 'ATS'
+
+--UNION ALL WITH WHERE
+select Machine_Code from All_Division_Machinery_Details
+where Machine_Code = 'ATS'
+union all
+select Machine_Code from Tannery_Division
+where Machine_Code = 'ATS'
+
+--GROUP BY Statement
+select COUNT(Machine_ID), Machine_Name from All_Division_Machinery_Details
+group by Machine_Name
+
+--GROUP BY in DESCENDING ORDER
+select COUNT(Machine_ID) , Machine_Code from All_Division_Machinery_Details
+group by Machine_Code
+order by COUNT(Machine_ID) desc
+
+--HAVING CLAUSE (this was added because where ketword could not be used with aggregate functions)
+select COUNT(Machine_ID), Machine_Name from All_Division_Machinery_Details
+group by Machine_Name
+having COUNT(Machine_ID) > 5
+
+--SUBQUERY
+select Machine_Code, Machine_Name from All_Division_Machinery_Details
+where Machine_ID in (select Machine_ID from All_Division_Machinery_Details where Machine_serial_No = '1015') 
+
+--EXISTS CLAUSE (used to test for the existence of any record in a subquery
+select Machine_Code, Machine_Name from All_Division_Machinery_Details
+where exists (select Machine_ID from All_Division_Machinery_Details where Machine_serial_No = '1015') 
+
+--ANY / ALL OPRATORS
+select Machine_Code, Machine_Name from All_Division_Machinery_Details
+where Machine_ID = any (select Machine_ID from All_Division_Machinery_Details where Machine_serial_No > '1015') 
+
+select Machine_Code, Machine_Name from All_Division_Machinery_Details
+where Machine_ID = all (select Machine_ID from All_Division_Machinery_Details where Machine_serial_No > '1015') 
+
+--STORED PROCEDURE
+create procedure Machine_Details as select * from All_Division_Machinery_Details
+go
+
+--EXECUTE STORED PROCEDURE
+exec Machine_Details
+
+--STORED PROCEDURE WITH ONE PARAMETER
+create procedure Machine_detailss @Machine_Name varchar(100)
+as
+select * from All_Division_Machinery_Details where Machine_Name = @Machine_Name
+go
+
+--EXECUTE STORED PROCEDURE WITH ONE PARAMETER
+exec Machine_detailss @Machine_Name = 'Auto Spray'
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
